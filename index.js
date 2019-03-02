@@ -3,18 +3,21 @@ const config = require('./config.js');
 const T = new Twitter(config.twitter);
 const axios = require('axios');
 
-
-function getMoney(event){
-  var message = event.text.split(' ');
-  var addressIndex = 0;
+// Function to find Ethereum Address in tweet
+var findAddress = new Promise(function(message){
+  var address = message.split(' ');
   for (let i = 0;i < message.length; i++){
     if (message[i].startsWith('0x')){
-      addressIndex = i;
-      break;
+      resolve(address[i]);
     }
+  reject(Error('500 - No address found'));
   }
-  console.log(message[addressIndex]);
-  axios.post(config.faucet_address,{'address':message[addressIndex],'agent':'twitter'})
+})
+
+function getMoney(event){
+  var address = findAddress(event.text);
+  console.log(address);
+  axios.post(config.faucet_address,{'address':findAddress(event.text),'agent':'twitter'})
   .then(function(response){
       T.post('statuses/update',{'status':'@'+event.user.screen_name + ' coins deposited'})
       console.log(response.data.status);
@@ -32,7 +35,7 @@ function getMoney(event){
 
 }
 
-
+//Twitter listener that listens for mentions of the TestOcean twitter account
 var stream = T.stream('statuses/filter',{track:'@TestOcean'});
 stream.on('data',function(event){
   console.log(event.text);
@@ -42,3 +45,5 @@ stream.on('data',function(event){
 stream.on('error',function(error){
   console.log(error);
 });
+
+module.exports = findAddress;

@@ -1,15 +1,22 @@
 {
   "name": "testoceantweetbot",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "TestOcean Faucet TweetBot",
   "main": "index.js",
+  "directories":{
+    "test":"test"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "author": "acolytec3",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.18.0",
     "twitter": "^1.7.1"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.0.2"
   }
 }
