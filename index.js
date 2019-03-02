@@ -10,8 +10,8 @@ function findAddress(message){
     if (address[i].startsWith('0x')){
       return(address[i]);
     }
-  return('')
   }
+  return '';
 }
 
 function getMoney(event){
