@@ -14,9 +14,8 @@ function findAddress(message){
   return '';
 }
 
+// Function to request coins from faucet
 function getMoney(event){
-  var address = findAddress(event.text)
-  console.log(address);
   axios.post(config.faucet_address,{'address':findAddress(event.text),'agent':'twitter'})
   .then(function(response){
     T.post('statuses/update',{'status':'@'+event.user.screen_name + ' coins deposited'})
