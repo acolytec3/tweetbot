@@ -33,7 +33,7 @@ function getMoney(event){
   });  
 }
 
-/*
+
 //Twitter listener that listens for mentions of the TestOcean twitter account
 var stream = T.stream('statuses/filter',{track:'@TestOcean'});
 stream.on('data',function(event){
@@ -44,5 +44,5 @@ stream.on('data',function(event){
 stream.on('error',function(error){
   console.log(error);
 });
-*/
-module.exports = findAddress;
+
+module.exports = findAddress, getMoney;
