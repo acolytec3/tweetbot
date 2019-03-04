@@ -1,10 +1,10 @@
 const Twitter = require('twitter');
-const config = require('./config.js');
+const config = require('./config2.js');
 const T = new Twitter(config.twitter);
 const axios = require('axios');
 
 // Function to find Ethereum Address in tweet
-function findAddress(message){
+exports.findAddress = function(message){
   var address = message.split(' ');
   for (let i = 0;i < address.length; i++){
     if (address[i].startsWith('0x')){
@@ -15,34 +15,18 @@ function findAddress(message){
 }
 
 // Function to request coins from faucet
-function getMoney(event){
-  axios.post(config.faucet_address,{'address':findAddress(event.text),'agent':'twitter'})
-  .then(function(response){
-    T.post('statuses/update',{'status':'@'+event.user.screen_name + ' coins deposited'})
-    console.log(response.data.status);
-  })
-  .catch(function(error){
-    if (error.response.status == '500'){
-      T.post('statuses/update',{'status':'@'+event.user.screen_name+' '+error.response.data.error}); 
-      console.log(error.response.data)
-    }
-    else {
-      T.post('statuses/update',{'status':'@'+event.user.screen_name+', something went wrong.  Please check your wallet address and try again later'}); 
-       console.log(error.response.data);
-    }
-  });  
+exports.getMoney = async function(address, tweet){
+  var code = 500;
+  try{
+    const response = await axios.post(config.faucet_address,{'address':address,'agent':'twitter'});
+    console.log(response.status);
+    tweet(response.status)
+  }
+  catch(err){
+    console.log(err.response.status);
+    code = 200;
+  }
 }
 
+ 
 
-//Twitter listener that listens for mentions of the TestOcean twitter account
-var stream = T.stream('statuses/filter',{track:'@TestOcean'});
-stream.on('data',function(event){
-  console.log(event.text);
-  getMoney(event);
-});
-
-stream.on('error',function(error){
-  console.log(error);
-});
-
-module.exports = findAddress, getMoney;
