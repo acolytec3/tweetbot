@@ -1,5 +1,6 @@
-const config = require('./config2.js');
+const config = require('./config.js');
 const axios = require('axios');
+//const am = require('axios-mock-adapter');
 
 // Function to find Ethereum Address in tweet
 exports.findAddress = function(message){
@@ -13,18 +14,18 @@ exports.findAddress = function(message){
 }
 
 // Function to request coins from faucet
-exports.getMoney = async function(address, callback){
-  return await axios.post("http://192.168.1.11:3001/faucet",{'address':address,'agent':'twitter'})
+exports.getMoney = async function(address){
+  return await axios.post(config.faucet_address,{'address':address,'agent':'twitter'})
   .then(function(response){
-    console.log(response.data.status);
-    callback(response.data.status, 'x tokens deposited')
+//    console.log(response);
+    return({'status':response.data.status, 'message':'x tokens deposited'})
   })
   .catch(function(error){
-    console.log(error.status);
-    callback(error.status, 'an error occurred');
+//    console.log(error);
+    if (error.status == 400){
+    	console.log(error.status);
+    	return ({'status':error.status, 'message':'Something.  Please check your wallet address and try again later.'});
+    } else return ({'status':error.status, 'message':error.response.data.error});
   })
 }
 
- 
-
- 

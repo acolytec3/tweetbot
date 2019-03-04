@@ -2,7 +2,7 @@
   "name": "testoceantweetbot",
   "version": "1.0.1",
   "description": "TestOcean Faucet TweetBot",
-  "main": "index.js",
+  "main": "tweetbot.js",
   "directories": {
     "test": "test"
   },
@@ -18,11 +18,20 @@
   },
   "devDependencies": {
     "axios": "^0.18.0",
+    "axios-mock-adapter": "^1.16.0",
     "chai": "^4.2.0",
     "codecov": "^3.2.0",
     "istanbul": "^0.4.5",
     "mocha": "^6.0.2",
     "nyc": "^13.3.0",
     "twitter": "^1.7.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/acolytec3/tweetbot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/acolytec3/tweetbot/issues"
+  },
+  "homepage": "https://github.com/acolytec3/tweetbot#readme"
 }
