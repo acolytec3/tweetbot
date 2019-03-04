@@ -4,24 +4,26 @@ const T = new Twitter(config.twitter);
 var findAddress = require('./index.js').findAddress;
 var getMoney = require('./index.js').getMoney;
 
-function tweet(user_name, response){
-  if (response.status == 200){
-    T.post('statuses/update',{'status':'@' + user_name + ' coins deposited'})
-  }  else if (error.response.status == '500'){
-      T.post('statuses/update',{'status':'@'+user_name+' '+response.data.error}); 
+exports.tweet = function(status_code,message){
+  console.log('inside tweet, status:',status_code)
+/*  if (status_code == 200){
+    T.post('statuses/update',{'status':'@' + event.user.screen_name + ' coins deposited'})
+  }  else if (status_code == '500'){
+      T.post('statuses/update',{'status':'@'+event.user.screen_name+' '+message}); 
   }
     else {
-      T.post('statuses/update',{'status':'@'+user_name+', something went wrong.  Please check your wallet address and try again later'}); 
-    }
+      T.post('statuses/update',{'status':'@'+event.user.screen_name+', something went wrong.  Please check your wallet address and try again later'}); 
+    }*/
 }
-
+/*
 //Twitter listener that listens for mentions of the TestOcean twitter account
 var stream = T.stream('statuses/filter',{track:'@TestOcean'});
 stream.on('data',function(event){
   console.log(event.text);
-  getMoney(findAddress(event.text),tweet);
+  getMoney(findAddress(event.text),event.user.screen_name, tweet);
 });
 
 stream.on('error',function(error){
   console.log(error);
 });
+*/
