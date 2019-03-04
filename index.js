@@ -15,8 +15,7 @@ exports.findAddress = function(message){
 }
 
 // Function to request coins from faucet
-exports.getMoney = async function(address, tweet){
-  var code = 500;
+exports.getMoney = function(address, tweet){
   try{
     const response = await axios.post(config.faucet_address,{'address':address,'agent':'twitter'});
     console.log(response.status);
@@ -30,3 +29,4 @@ exports.getMoney = async function(address, tweet){
 
  
 
+ 
