@@ -1,6 +1,5 @@
-const config = require('./config2.js');
+const config = require('./config.js');
 const axios = require('axios');
-//const am = require('axios-mock-adapter');
 
 // Function to find Ethereum Address in tweet
 exports.findAddress = function(message){
