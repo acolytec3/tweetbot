@@ -7,7 +7,7 @@ var axios = require('axios');
 var mock = new axmock(axios);
 
 //###################  Unit Tests  #################################
-mock.onPost().reply(200,{'status':'success'});
+mock.onPost().reply(200,{'status':200});
 
 //Unit test for positive scenario where a correct-looking address is provided to function
 describe('findAddress()', function() {
@@ -34,14 +34,14 @@ describe('getMoney()', function(){
     });
 });
 
-mock.restore();
+//mock.restore();
 /*
 // #############  Integration Tests  #####################
 //Test to validate to ensure proper response from the faucet server is created when a valid address is provided 
 //Note: The Faucet Server must be configured in config.js for this test to pass
 describe('getMoney()', function(){
     it('should post a request for coins to the Faucet Server and return a 200 status when a valid address is provided',async() => {
-    var address = '@TestOcean, gimme some ETH 0xa9fe9c78359e841a473fcd54d595c0fd521f4bdb';
+    var address = '@TestOcean, gimme some ETH 0xbcafdd642118e5536024675e776d32413728dd08';
 	const response = await getMoney(findAddress(address));
 	expect(response.status).to.equal(200);
     });
