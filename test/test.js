@@ -11,11 +11,16 @@ mock.onPost().reply(200,{'status':200});
 
 //Unit test for positive scenario where a correct-looking address is provided to function
 describe('findAddress()', function() {
-    it('should determine whether there is a string that starts with 0x in a tweet',function(){
+    it('should identify a phrase that begins with 0x within a tweet and return it',function(){
         var tweet = '@TestOcean, give me some ETH 0x01325ab3125acbdssq32';
         var address = findAddress(tweet);
         expect(address.startsWith('0x')).to.be.true;
     });
+    it('should return a blank if no Ethereum address is found within a tweet',function(){
+        var tweet = '@TestOcean, given me ETH pretty please';
+        var address = findAddress(tweet);
+        expect(address).to.equal('');
+    })
 });
 
 //Unit test to validate to ensure proper response is created when a correct looking response is provided by stubbed back-end
@@ -40,3 +45,5 @@ describe('getMoney()', function(){
 	expect(response.status).to.equal(200);
     });
 });
+
+
