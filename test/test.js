@@ -34,8 +34,8 @@ describe('getMoney()', function(){
     });
 });
 
-//mock.restore();
-/*
+mock.restore();
+
 // #############  Integration Tests  #####################
 //Test to validate to ensure proper response from the faucet server is created when a valid address is provided 
 //Note: The Faucet Server must be configured in config.js for this test to pass
@@ -46,5 +46,5 @@ describe('getMoney()', function(){
 	expect(response.status).to.equal(200);
     });
 });
-*/
+
 
