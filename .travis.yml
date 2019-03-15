@@ -21,6 +21,7 @@ before_install:
   - bash -x start_ocean.sh --latest --no-brizo --no-pleuston --local-spree-node 2>&1 > start_ocean.log &
   - git clone https://github.com/oceanprotocol/faucet.git
   - cd faucet
+  - sleep 60
   - docker-compose up 
   - sleep 60
   - cd ..
