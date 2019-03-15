@@ -4,7 +4,7 @@ node_js:
 
 services:
   - docker
-  - mongodb
+
 
 cache:
   directories:
