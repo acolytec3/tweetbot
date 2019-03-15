@@ -11,7 +11,6 @@ cache:
     - server/node_modules
 
 before_install:
-  - npm install -g npm
   - npm install -g ganache-cli@~6.1.8
   - ganache-cli --port 18545 > ganache-cli.log &
   - git clone https://github.com/oceanprotocol/barge
@@ -22,7 +21,7 @@ before_install:
   - bash -x start_ocean.sh --latest --no-brizo --no-pleuston --local-spree-node 2>&1 > start_ocean.log &
   - git clone https://github.com/oceanprotocol/faucet.git
   - cd faucet
-  - docker-compose up > start_faucet.log &
+  - docker-compose up 
   - sleep 60
   - cd ..
   - npm install
