@@ -6,9 +6,9 @@ services:
   - docker
 
 before_install:
-  - git clone https://github.com/oceanprotocol/barge.git
-  - cd barge
-  - ./start_ocean.sh --latest --local-spree-node --no-pleuston --force-pull
   - git clone https://github.com/oceanprotocol/faucet.git
   - cd ~/faucet
   - docker-compose up
+
+script:
+  - npm test
