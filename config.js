@@ -4,5 +4,5 @@ module.exports = { twitter:{
   access_token_key: '',
   access_token_secret: ''
   },
-  faucet_address: 'http://192.168.X.XXX:3001/faucet'
+  faucet_address: 'http://localhost:3001/faucet'
 }
