@@ -23,6 +23,7 @@ before_install:
   - git clone https://github.com/oceanprotocol/faucet.git
   - cd faucet
   - docker-compose up > start_faucet.log &
+  - sleep 60
   - cd ..
   - npm install
 

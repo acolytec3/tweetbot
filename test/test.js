@@ -7,7 +7,7 @@ var axios = require('axios');
 var mock = new axmock(axios);
 
 //###################  Unit Tests  #################################
-mock.onPost().reply(200,{'status':200});
+//mock.onPost().reply(200,{'status':200});
 
 //Unit test for positive scenario where a correct-looking address is provided to function
 describe('findAddress()', function() {
@@ -34,7 +34,7 @@ describe('getMoney()', function(){
     });
 });
 
-mock.restore();
+//mock.restore();
 
 // #############  Integration Tests  #####################
 //Test to validate to ensure proper response from the faucet server is created when a valid address is provided 
