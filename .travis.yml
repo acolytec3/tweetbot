@@ -19,8 +19,8 @@ before_install:
   - cd faucet
   - ./server/scripts/wait_for_migration_and_extract_keeper_artifacts.sh > keeper.log &
   - sleep 60
-  - npm run build > start_faucet.log &
-  #- docker-compose up > start_faucet.log &
+ # - npm run build > start_faucet.log &
+  - docker-compose up > start_faucet.log &
   - sleep 240
   - cd ..
   - npm install
