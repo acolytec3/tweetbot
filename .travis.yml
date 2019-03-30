@@ -21,7 +21,7 @@ before_install:
   - sleep 60
  # - npm run build > start_faucet.log &
   - docker-compose up > start_faucet.log &
-  - sleep 12-
+  - sleep 120
   - cd ..
   - npm install
 
