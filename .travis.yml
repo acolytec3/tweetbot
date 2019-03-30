@@ -19,7 +19,6 @@ before_install:
   - cd faucet
   - ./server/scripts/wait_for_migration_and_extract_keeper_artifacts.sh > keeper.log &
   - sleep 60
- # - npm run build > start_faucet.log &
   - docker-compose up > start_faucet.log &
   - sleep 120
   - wget --header="Content-Type: application/json" --post-data '{"address": "0x7E187af69973a66e049a15E763c97CB726765f87", "agent": "twitter"}' http://localhost:3001/faucet
