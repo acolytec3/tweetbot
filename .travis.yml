@@ -5,23 +5,23 @@ node_js:
 services:
   - docker
 
-
 cache:
   directories:
     - server/node_modules
 
 before_install:
-  - npm install -g ganache-cli@~6.1.8
   - ganache-cli --port 18545 > ganache-cli.log &
   - git clone https://github.com/oceanprotocol/barge
   - cd barge
-  - export KEEPER_VERSION=v0.6.12
-  - export BRIZO_VERSION=v0.2.0
-  - export AQUARIUS_VERSION=v0.1.8
-  - bash -x start_ocean.sh --latest --no-brizo --no-pleuston --local-spree-node 2>&1 > start_ocean.log &
+  - bash -x start_ocean.sh --latest --no-secret-store --no-aquarius --no-brizo --no-pleuston --local-spree-node 2>&1 > start_ocean.log &
+  - cd ..
   - git clone https://github.com/oceanprotocol/faucet.git
   - cd faucet
-  - npm run build
+  - ./scripts/wait_for_migration_and_extract_keeper_artifacts.sh
+  - sleep 60
+  - npm run build > start_faucet.log &
+  #- docker-compose up > start_faucet.log &
+  - sleep 240
   - cd ..
   - npm install
 
