@@ -21,7 +21,7 @@ before_install:
   - sleep 60
   - docker-compose up > start_faucet.log &
   - sleep 120
-  - bash -x curl -d '{"address":"0x01"}' -H "Content-Type: application/json" -X POST http://localhost:3001/faucet
+  - "curl -d '{'address':'0x01'}' -H 'Content-Type: application/json' -X POST http://localhost:3001/faucet"
 
   - cd ..
   - npm install
